@@ -1,0 +1,7 @@
+{
+"scripts": {"start":"tsc --watch"},
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  },
+  "type": "module"
+}
