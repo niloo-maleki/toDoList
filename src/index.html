@@ -73,8 +73,7 @@
             <tbody
               id="tbody"
               class="[&>*:nth-child(odd)]:bg-white [&:nth-child(even)]:bg-[#FBFCFC]"
-            >
-            </tbody>
+            ></tbody>
           </table>
         </div>
       </div>
@@ -87,30 +86,86 @@
       <div class="modal-content rounded-md">
         <!--second contents-->
         <div class="flex flex-col gap-2 my-6 py-3 px-3 mx-auto">
-          <div class="grid grid-cols-3 gap-2 items-center">
+          <div class="grid grid-cols-3 gap-4 items-center">
             <div class="flex">
               <span>زمان ددلاین:</span>
               <input id="time" type="date" />
             </div>
-            <div>
-              <span>لیبل:</span>
-              <select
-                id="selected_color"
-                class="border-gray-200 px-5 py-3b bg-white"
-              >
-                <option>green</option>
-                <option>yellow</option>
-                <option>red</option>
-                <option>blue</option>
-              </select>
-            </div>
-            <div>
+            <div class="flex items-center">
               <span>وضعیت:</span>
-              <select id="status" class="border-gray-200 px-5 py-3b bg-white">
+              <select id="status" class="border-gray-200 px-5 py-3 bg-white">
                 <option value="toDo">toDo</option>
                 <option value="doing" selected>doing</option>
                 <option value="done">done</option>
               </select>
+            </div>
+            <div class="flex items-center gap-1">
+              <span>لیبل:</span>
+              <div class="flex items-center gap-2">
+                <input
+                  checked
+                  id="red-checkbox"
+                  type="checkbox"
+                  value=""
+                  class="w-4 h-4 accent-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500"
+                />
+                <label
+                  for="red-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Red</label
+                >
+              </div>
+              <div class="flex items-center gap-2">
+                <input
+                  checked
+                  id="green-checkbox"
+                  type="checkbox"
+                  value=""
+                  class="w-4 h-4 accent-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500"
+                />
+                <label
+                  for="green-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Green</label
+                >
+              </div>
+              <div class="flex items-center gap-2">
+                <input
+                  checked
+                  id="blue-checkbox"
+                  type="checkbox"
+                  value=""
+                  class="w-4 h-4 accent-sky-600 bg-gray-100 border-gray-300 rounded focus:ring-sky-500"
+                />
+                <label
+                  for="blue-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >blue</label
+                >
+              </div>
+              <div class="flex items-center gap-2">
+                <input
+                  checked
+                  id="yellow-checkbox"
+                  type="checkbox"
+                  value=""
+                  class="w-4 h-4 accent-yellow-500 bg-gray-100 border-gray-300 rounded focus:ring-yellow-500"
+                />
+                <label
+                  for="yellow-checkbox"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >yellow</label
+                >
+              </div>
+              <!-- <select
+                  id="selected_color"
+                  class="border-gray-200 px-5 py-3b bg-white"
+                >
+                  <option>green</option>
+                  <option>yellow</option>
+                  <option>red</option>
+                  <option>blue</option>
+                </select> -->
             </div>
           </div>
           <div class="w-full">
@@ -131,18 +186,18 @@
             class="flex w-full sm:flex-col lg:flex-row justify-between items-center"
           >
             <button
-              id="addNewTask"
-              type="button"
-              class="items-center text-white bg-[#3A57E8] rounded-lg px-3 py-1"
-            >
-              ارسال
-            </button>
-            <button
               id="closeModal"
               type="button"
               class="items-center text-white bg-red-600 rounded-lg px-3 py-1"
             >
               بستن
+            </button>
+            <button
+              id="addNewTask"
+              type="button"
+              class="items-center text-white bg-[#3A57E8] rounded-lg px-3 py-1"
+            >
+              ارسال
             </button>
           </div>
         </div>

@@ -12,9 +12,12 @@ export class Task {
     const row = `
     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
       <div class="flex gap-2 items-center">
-        <label
-        style="background-color:${task.label}"
-        class="border border-gray-800 rounded-full w-4 h-4"></label>
+      ${task.label.map((item) => {
+        return `<button
+            id='${item}'
+            style="background-color:${item}"
+            class="delete-btn border border-gray-800 rounded-full w-4 h-4 cursor-pointer"></button>`;
+      })}
         <p class="text-gray-900 whitespace-no-wrap">
         ${task.detail}
         </p>
@@ -42,10 +45,18 @@ export class Task {
   `;
     const newRow = tbody.insertRow();
     newRow.innerHTML = row;
-    
-    newRow.getElementsByClassName("delete")[0].addEventListener("click",()=>{
-      this.delete(task.id,newRow)
-    })
+
+    newRow.querySelector(".delete")?.addEventListener("click", () => {
+      this.delete(task.id, newRow);
+    });
+
+    const deleteTagBtn = newRow.querySelectorAll(".delete-btn");
+
+    deleteTagBtn?.forEach((element) => {
+      element.addEventListener("click", (event) => {
+        this.deleteLabel(task.label, event);
+      });
+    });
   }
 
   render() {
@@ -55,11 +66,17 @@ export class Task {
   }
 
   delete(id: number, element: Element) {
+    console.log(element);
     element.closest("tr")?.remove();
     this.tasks = this.tasks.filter((task) => id !== task.id);
   }
 
   add(task: ITask) {
     this.addRow(task);
+  }
+
+  deleteLabel(label: (string | undefined)[], element: any) {
+    element.target.remove();
+    label.filter((item) => item !== element?.target?.id);
   }
 }

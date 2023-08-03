@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const openModalBtn = document.getElementById("openModal");
     const closeModalBtn = document.getElementById("closeModal");
     const addNewTaskBtn = document.getElementById("addNewTask");
-    const deleteBtn = document.getElementsByClassName("delete");
-    const statusChange = document.getElementsByClassName("status");
     const list = new Task(mockTasks);
     list.render();
     addNewTaskBtn === null || addNewTaskBtn === void 0 ? void 0 : addNewTaskBtn.addEventListener("click", () => {
