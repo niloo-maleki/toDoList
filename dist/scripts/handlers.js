@@ -1,5 +1,4 @@
 const modalAddTodo = document.getElementById("modalAddTodo");
-const tbody = document.getElementById("tbody");
 const selectedColor = document.getElementById("selected_color");
 const time = document.getElementById("time");
 const state = document.getElementById("status");
@@ -17,7 +16,8 @@ export const addNewTodoHandler = () => {
     const status = state.value;
     const label = selectedColor.value;
     const date = time.value;
-    const newTask = [{ detail, status, label, date }];
+    const id = Date.now();
+    const newTask = { id, detail, status, label, date };
     closeModalHandler();
     return newTask;
 };

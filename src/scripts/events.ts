@@ -12,16 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModalBtn = document.getElementById("closeModal");
   const addNewTaskBtn = document.getElementById("addNewTask");
   const deleteBtn = document.getElementsByClassName("delete");
+  const statusChange = document.getElementsByClassName(
+    "status"
+  ) as HTMLSelectElement;
+
 
   const list = new Task(mockTasks);
   list.render();
 
-  Array.from(deleteBtn).forEach(element => {
-    element?.addEventListener("click", () => {
-      const rowId = element.getAttribute("data-id") ?? 0;
-      list.delete(+rowId,element);
-    });
+  addNewTaskBtn?.addEventListener("click", () => {
+    const newTask = addNewTodoHandler();
+    list.add(newTask);
   });
+
+
   openModalBtn?.addEventListener("click", () => {
     openModalHandler();
   });
@@ -30,9 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModalHandler();
   });
 
-  addNewTaskBtn?.addEventListener("click", () => {
-   const newTask = addNewTodoHandler()
-   const list = new Task(newTask);
-   list.render();
-  });
+  // Array.from(statusChange).forEach((element) => {
+  //   element.addEventListener("click", () => {
+  //     console.log("change", element?.value);
+  //   });
+  // });
+
+
 });

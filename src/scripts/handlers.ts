@@ -2,7 +2,6 @@ import { states } from "../assets/svg/utilities/constants.js";
 import { ITask } from "./interface.js";
 
 const modalAddTodo = document.getElementById("modalAddTodo");
-const tbody = document.getElementById("tbody") as HTMLTableElement;
 const selectedColor = document.getElementById(
     "selected_color"
   ) as HTMLInputElement;
@@ -26,7 +25,8 @@ export const addNewTodoHandler = () => {
   const status = state.value;
   const label = selectedColor.value;
   const date = time.value;
-  const newTask:ITask[] = [{detail, status, label, date }];
+  const id = Date.now()
+  const newTask:ITask = {id, detail, status, label, date };
   closeModalHandler();
   return newTask
 };
