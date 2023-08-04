@@ -4,17 +4,14 @@ import { Task } from "./task.js";
 document.addEventListener("DOMContentLoaded", () => {
     const openModalBtn = document.getElementById("openModal");
     const closeModalBtn = document.getElementById("closeModal");
-    const addNewTaskBtn = document.getElementById("addNewTask");
+    const submitForm = document.getElementById("submitForm");
     const list = new Task(mockTasks);
     list.render();
-    addNewTaskBtn === null || addNewTaskBtn === void 0 ? void 0 : addNewTaskBtn.addEventListener("click", () => {
+    submitForm === null || submitForm === void 0 ? void 0 : submitForm.addEventListener("submit", (event) => {
+        event.preventDefault();
         const newTask = addNewTodoHandler();
         list.add(newTask);
     });
-    openModalBtn === null || openModalBtn === void 0 ? void 0 : openModalBtn.addEventListener("click", () => {
-        openModalHandler();
-    });
-    closeModalBtn === null || closeModalBtn === void 0 ? void 0 : closeModalBtn.addEventListener("click", () => {
-        closeModalHandler();
-    });
+    openModalBtn === null || openModalBtn === void 0 ? void 0 : openModalBtn.addEventListener("click", openModalHandler);
+    closeModalBtn === null || closeModalBtn === void 0 ? void 0 : closeModalBtn.addEventListener("click", closeModalHandler);
 });

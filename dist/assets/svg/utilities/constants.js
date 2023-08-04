@@ -1,5 +1,5 @@
-export const states = ["toDo", "doing", "done"];
-export const labelColor = ["green", "blue", "red", "yellow"];
+export const STATUS = ["toDo", "doing", "done"];
+export const COLORS = ["green", "blue", "red", "yellow"];
 export const mockTasks = [
     {
         id: 0,

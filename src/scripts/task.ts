@@ -1,4 +1,4 @@
-import { states } from "../assets/svg/utilities/constants.js";
+import { STATUS } from "../assets/svg/utilities/constants.js";
 import { ITask } from "./interface";
 
 export class Task {
@@ -31,7 +31,7 @@ export class Task {
     </td>  
     <td class="border-b border-gray-200 bg-white text-sm">
     <select class="status border-gray-200 px-5 py-3b bg-white">
-     ${states.map(
+     ${STATUS.map(
        (item) =>
          `<option value=${item} ${
            item === task.status ? "selected" : ""

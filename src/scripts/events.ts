@@ -10,22 +10,19 @@ import { Task } from "./task.js";
 document.addEventListener("DOMContentLoaded", () => {
   const openModalBtn = document.getElementById("openModal");
   const closeModalBtn = document.getElementById("closeModal");
-  const addNewTaskBtn = document.getElementById("addNewTask");
+  const submitForm = document.getElementById("submitForm");
 
   const list = new Task(mockTasks);
   list.render();
 
-  addNewTaskBtn?.addEventListener("click", () => {
+  submitForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
     const newTask = addNewTodoHandler();
     list.add(newTask);
   });
 
-  openModalBtn?.addEventListener("click", () => {
-    openModalHandler();
-  });
+  openModalBtn?.addEventListener("click",openModalHandler);
 
-  closeModalBtn?.addEventListener("click", () => {
-    closeModalHandler();
-  });
+  closeModalBtn?.addEventListener("click",closeModalHandler);
 
 });

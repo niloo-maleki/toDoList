@@ -1,20 +1,18 @@
-import { states } from "../assets/svg/utilities/constants.js";
+import { STATUS } from "../assets/svg/utilities/constants.js";
 export class Task {
     constructor(data) {
-        this.tasks = data || [];
-    }
-    addRow(task) {
-        var _a;
-        const tbody = document.getElementById("tbody");
-        const row = `
+        this.addRow = (task) => {
+            var _a;
+            const tbody = document.getElementById("tbody");
+            const row = `
     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
       <div class="flex gap-2 items-center">
       ${task.label.map((item) => {
-            return `<button
+                return `<button
             id='${item}'
             style="background-color:${item}"
             class="delete-btn border border-gray-800 rounded-full w-4 h-4 cursor-pointer"></button>`;
-        })}
+            })}
         <p class="text-gray-900 whitespace-no-wrap">
         ${task.detail}
         </p>
@@ -25,7 +23,7 @@ export class Task {
     </td>  
     <td class="border-b border-gray-200 bg-white text-sm">
     <select class="status border-gray-200 px-5 py-3b bg-white">
-     ${states.map((item) => `<option value=${item} ${item === task.status ? "selected" : ""}>${item}</option>`)}
+     ${STATUS.map((item) => `<option value=${item} ${item === task.status ? "selected" : ""}>${item}</option>`)}
       </select>
     </td>
     <td class="border-b border-gray-200 bg-white text-sm"><button
@@ -35,34 +33,36 @@ export class Task {
     </svg>
     </button></td>
   `;
-        const newRow = tbody.insertRow();
-        newRow.innerHTML = row;
-        (_a = newRow.querySelector(".delete")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
-            this.delete(task.id, newRow);
-        });
-        const deleteTagBtn = newRow.querySelectorAll(".delete-btn");
-        deleteTagBtn === null || deleteTagBtn === void 0 ? void 0 : deleteTagBtn.forEach((element) => {
-            element.addEventListener("click", (event) => {
-                this.deleteLabel(task.label, event);
+            const newRow = tbody.insertRow();
+            newRow.innerHTML = row;
+            (_a = newRow.querySelector(".delete")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
+                this.delete(task.id, newRow);
             });
-        });
-    }
-    render() {
-        this.tasks.map((task) => {
+            const deleteTagBtn = newRow.querySelectorAll(".delete-btn");
+            deleteTagBtn === null || deleteTagBtn === void 0 ? void 0 : deleteTagBtn.forEach((element) => {
+                element.addEventListener("click", (event) => {
+                    this.deleteLabel(task.label, event);
+                });
+            });
+        };
+        this.render = () => {
+            this.tasks.map((task) => {
+                this.addRow(task);
+            });
+        };
+        this.add = (task) => {
             this.addRow(task);
-        });
+        };
+        this.deleteLabel = (label, element) => {
+            element.target.remove();
+            label.filter((item) => { var _a; return item !== ((_a = element === null || element === void 0 ? void 0 : element.target) === null || _a === void 0 ? void 0 : _a.id); });
+        };
+        this.tasks = data || [];
     }
     delete(id, element) {
         var _a;
         console.log(element);
         (_a = element.closest("tr")) === null || _a === void 0 ? void 0 : _a.remove();
         this.tasks = this.tasks.filter((task) => id !== task.id);
-    }
-    add(task) {
-        this.addRow(task);
-    }
-    deleteLabel(label, element) {
-        element.target.remove();
-        label.filter((item) => { var _a; return item !== ((_a = element === null || element === void 0 ? void 0 : element.target) === null || _a === void 0 ? void 0 : _a.id); });
     }
 }
