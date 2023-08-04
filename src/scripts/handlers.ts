@@ -1,32 +1,40 @@
-import { states } from "../assets/svg/utilities/constants.js";
+import { Status, labelColor } from "../assets/svg/utilities/constants.js";
 import { ITask } from "./interface.js";
 
-const modalAddTodo = document.getElementById("modalAddTodo");
-const tbody = document.getElementById("tbody") as HTMLTableElement;
-const selectedColor = document.getElementById(
-    "selected_color"
-  ) as HTMLInputElement;
+const submitForm = document.getElementById("submitForm");
+const color = document.querySelectorAll(
+  "input[type=checkbox]"
+) as NodeListOf<HTMLInputElement>;
 const time = document.getElementById("time") as HTMLInputElement;
 const state = document.getElementById("status") as HTMLInputElement;
 const description = document.getElementById("description") as HTMLInputElement;
 
 export const openModalHandler = () => {
-  modalAddTodo?.classList.remove("hidden");
-  modalAddTodo?.classList.add("flex");
+  submitForm?.classList.remove("hidden");
+  submitForm?.classList.add("flex");
 };
 
 export const closeModalHandler = () => {
-  modalAddTodo?.classList.remove("flex");
-  modalAddTodo?.classList.add("hidden");
+  submitForm?.classList.remove("flex");
+  submitForm?.classList.add("hidden");
 };
 
+export const selectedColorHandler = (()=>{
+  return Array.from(color).map((item) => {
+    if(item.checked){
+      return item.id.replace("-checkbox", "");
+    }
+     return ""
+  }).filter(item => item !== "")
+})
 
 export const addNewTodoHandler = () => {
   const detail = description.value;
-  const status = state.value;
-  const label = selectedColor.value;
+  const status = state.value as Status;
+  const label = selectedColorHandler() as labelColor[];
   const date = time.value;
-  const newTask:ITask[] = [{detail, status, label, date }];
+  const id = Date.now();
+  const newTask: ITask = { id, detail, status, label, date };
   closeModalHandler();
-  return newTask
+  return newTask;
 };

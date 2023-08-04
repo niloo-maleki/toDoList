@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100vh; /* Full height */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    height: fit-content;
+    min-width: 50%;
+    max-width: fit-content;
+  }

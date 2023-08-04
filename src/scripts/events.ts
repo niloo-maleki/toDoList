@@ -3,36 +3,26 @@ import {
   addNewTodoHandler,
   closeModalHandler,
   openModalHandler,
+  selectedColorHandler,
 } from "./handlers.js";
-import { ITask } from "./interface.js";
 import { Task } from "./task.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const openModalBtn = document.getElementById("openModal");
   const closeModalBtn = document.getElementById("closeModal");
-  const addNewTaskBtn = document.getElementById("addNewTask");
-  const deleteBtn = document.getElementsByClassName("delete");
+  const submitForm = document.getElementById("submitForm");
 
   const list = new Task(mockTasks);
   list.render();
 
-  Array.from(deleteBtn).forEach(element => {
-    element?.addEventListener("click", () => {
-      const rowId = element.getAttribute("data-id") ?? 0;
-      list.delete(+rowId,element);
-    });
-  });
-  openModalBtn?.addEventListener("click", () => {
-    openModalHandler();
+  submitForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const newTask = addNewTodoHandler();
+    list.add(newTask);
   });
 
-  closeModalBtn?.addEventListener("click", () => {
-    closeModalHandler();
-  });
+  openModalBtn?.addEventListener("click",openModalHandler);
 
-  addNewTaskBtn?.addEventListener("click", () => {
-   const newTask = addNewTodoHandler()
-   const list = new Task(newTask);
-   list.render();
-  });
+  closeModalBtn?.addEventListener("click",closeModalHandler);
+
 });
