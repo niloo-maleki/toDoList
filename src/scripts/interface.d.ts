@@ -2,7 +2,7 @@ export interface ITask {
   id: number;
   detail: string;
   status: string;
-  label: (string |undefined)[];
+  label: string[];
   date: number | string;
 }
 

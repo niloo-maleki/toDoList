@@ -17,12 +17,14 @@ export const selectedColorHandler = (() => {
         if (item.checked) {
             return item.id.replace("-checkbox", "");
         }
-    }).filter(item => item !== undefined);
+        return "";
+    }).filter(item => item !== "");
 });
 export const addNewTodoHandler = () => {
     const detail = description.value;
     const status = state.value;
     const label = selectedColorHandler();
+    console.log(label);
     const date = time.value;
     const id = Date.now();
     const newTask = { id, detail, status, label, date };

@@ -5,9 +5,12 @@ export class Task {
   tasks: ITask[];
   constructor(data: ITask[]) {
     this.tasks = data || [];
+    
+    //* Instead of writing arrow function methods
+    // this.add = this.add.bind(this)
   }
 
-  addRow(task: ITask) {
+  addRow = (task: ITask) => {
     const tbody = document.getElementById("tbody") as HTMLTableElement;
     const row = `
     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -57,13 +60,13 @@ export class Task {
         this.deleteLabel(task.label, event);
       });
     });
-  }
+  };
 
-  render() {
+  render = () => {
     this.tasks.map((task) => {
       this.addRow(task);
     });
-  }
+  };
 
   delete(id: number, element: Element) {
     console.log(element);
@@ -71,12 +74,12 @@ export class Task {
     this.tasks = this.tasks.filter((task) => id !== task.id);
   }
 
-  add(task: ITask) {
+  add = (task: ITask) => {
     this.addRow(task);
-  }
+  };
 
-  deleteLabel(label: (string | undefined)[], element: any) {
+  deleteLabel = (label: string[], element: any) => {
     element.target.remove();
     label.filter((item) => item !== element?.target?.id);
-  }
+  };
 }
